@@ -26,4 +26,4 @@
 
 <p align="center"> <b> 👉🏻 Presented as a part of the 8th Semester of Engineering @ Terna Engineering College 👈🏻 <b> </p>
  
-<p align="center"><a href='https://github.com/Amey-Thakur/ONLINE-CHESS-GAME', style='color: greenyellow;'> ✌🏻 Back To Repository ✌🏻</p>
+<p align="center"><a href='https://github.com/Amey-Thakur/ACHIEVEMENTS#engineering', style='color: greenyellow;'> ✌🏻 Back To Engineering ✌🏻</p>
