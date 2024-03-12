@@ -5,7 +5,14 @@
  >[Play Chess!](https://onlinechess-game.herokuapp.com)
  
  >[Project Demo](https://youtu.be/CCbrTQwYyE8)
- 
+
+
+## Authors
+  
+   - **[Amey Thakur](https://github.com/Amey-Thakur)**
+   
+   - **[Mega Satish](https://github.com/msatmod)**
+
 #
  
 ### Features
@@ -28,6 +35,8 @@
 
 ---
 
-<p align="center"> <b> 👉🏻 Presented as a part of the 8th Semester of Engineering @ Terna Engineering College 👈🏻 <b> </p>
+<p align="center"> <b> 👉🏻 Presented as a part of the 8th Semester Mini-Project @ Terna Engineering College 👈🏻 <b> </p>
+
+<p align="center"> <b> 👷 Project Authors: Amey Thakur and Mega Satish (Batch of 2022) <b> </p>
  
-<p align="center"><a href='https://github.com/Amey-Thakur/ACHIEVEMENTS#engineering', style='color: greenyellow;'> ✌🏻 Back To Engineering ✌🏻</p>
+<p align="center"><a href='https://github.com/Amey-Thakur/ENGINEERING', style='color: greenyellow;'> ✌🏻 Back To Engineering ✌🏻</p>
