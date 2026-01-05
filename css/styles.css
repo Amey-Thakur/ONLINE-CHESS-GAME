@@ -1,3 +1,20 @@
+/**
+ * @file styles.css
+ * @description Custom styles for the Online Chess Game.
+ * Handles layout for game modes, board themes, and chat message styling.
+ * 
+ * @author Amey Thakur <https://github.com/Amey-Thakur>
+ * @author Mega Satish <https://github.com/Mega-Satish>
+ * @created 2022-08-09
+ * @modified 2022-08-09
+ * @repository https://github.com/Amey-Thakur/ONLINE-CHESS-GAME
+ * @license MIT
+ */
+
+/* -------------------------------------------------------------------------- */
+/*                                Global Layout                               */
+/* -------------------------------------------------------------------------- */
+
 html {
     margin: 0;
     padding: 0;
@@ -9,22 +26,47 @@ body {
     padding: 0;
     height: 100%;
     overflow: visible;
-    display:flex; 
-    flex-direction:column; 
+    display: flex;
+    flex-direction: column;
 }
- #singlePlayer, #multiPlayer, #joinButton{
+
+/* -------------------------------------------------------------------------- */
+/*                               Game Controls                                */
+/* -------------------------------------------------------------------------- */
+
+#singlePlayer,
+#multiPlayer,
+#joinButton {
     margin: 10px;
     width: 300px;
     padding: 20px;
     font-size: 22px;
- }
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
- #gameMode, #joinFormDiv{
-    padding: 10px; 
+#gameMode,
+#joinFormDiv {
+    padding: 10px;
     margin-top: 8%;
- }
+}
 
- .black-3c85d {
+.formInput {
+    border: 1px solid gray;
+    height: 50px;
+    border-radius: 4px;
+    width: 300px;
+    margin: 10px;
+    padding: 0 4px;
+    font-size: 16px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Board Themes                                */
+/* -------------------------------------------------------------------------- */
+
+/* Default Theme Colors */
+.black-3c85d {
     background-color: #E1E1E1;
     color: #FFFFFF;
 }
@@ -34,41 +76,44 @@ body {
     color: #E1E1E1;
 }
 
-#grey_board, #orange_board, #green_board, #blue_board{
+/* Theme Selection Buttons */
+#grey_board,
+#orange_board,
+#green_board,
+#blue_board {
     margin: 6px;
     width: 130px;
-}
-.formInput {
-    border: 1px solid gray;
-    height: 50px;
     border-radius: 4px;
-    width: 300px;
-    margin: 10px;
-    padding: 0 4px;
 }
 
-.myMessage{
+/* -------------------------------------------------------------------------- */
+/*                                Chat Styles                                 */
+/* -------------------------------------------------------------------------- */
+
+/* User's Message (Right Aligned) */
+.myMessage {
     text-align: right;
     padding: 8px;
     background-color: #E0E0E0;
     font-size: 17px;
     margin-bottom: 10px;
     margin-right: 7px;
-    clear:both;
-    float : right;
-    border-radius: 5px;    
+    clear: both;
+    float: right;
+    border-radius: 5px;
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
 }
 
-.youMessage{
+/* Opponent's Message (Left Aligned) */
+.youMessage {
     text-align: left;
     padding: 8px;
     background-color: #616161;
     color: white;
     font-size: 17px;
     margin-bottom: 10px;
-    clear:both;
+    clear: both;
     border-radius: 5px;
-    float : left;    
+    float: left;
 }
