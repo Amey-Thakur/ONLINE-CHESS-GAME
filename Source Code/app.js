@@ -1,128 +1,159 @@
+/**
+ * @file app.js
+ * @description Main server entry point for the Online Chess Game. Handles Express server setup,
+ * Socket.IO real-time connections, game logic management, and room coordination.
+ * 
+ * @author Amey Thakur <https://github.com/Amey-Thakur>
+ * @author Mega Satish <https://github.com/Mega-Satish>
+ * @created 2022-08-09
+ * @modified 2022-08-09
+ * @repository https://github.com/Amey-Thakur/ONLINE-CHESS-GAME
+ * @license MIT
+ */
+
 const path = require('path')
 const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
+const Chess = require('chess.js').Chess
 
-var Chess = require('chess.js').Chess;
-
+// Initialize Express App and Server
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 
+// Server Setup
 const port = process.env.PORT || 3000
 const publicDirectoryPath = path.join(__dirname, './')
 
 app.use(express.static(publicDirectoryPath))
 
-// const Data = new Map()
-const gameData = new Map()
-const userData = new Map()
-const roomsList = new Set()
-
+// Game State Management
+const gameData = new Map()   // Maps socket ID to Chess instance
+const userData = new Map()   // Maps user key to user details
+const roomsList = new Set()  // Track active rooms
 let totalUsers = 0;
 
-//Getting a connection
+/**
+ * Socket.IO Connection Handler
+ * Manages real-time events for game rooms, moves, and chat.
+ */
 io.on('connection', (socket) => {
     totalUsers++;
-    // console.log(totalUsers)
-    //To render rooms list initially
+
+    // Initial State Emission
     io.emit('roomsList', Array.from(roomsList));
     io.emit('updateTotalUsers', totalUsers)
+
+    /**
+     * Updates game status for all players in a room
+     * Checks for checkmate, draw, or check conditions
+     * @param {Object} game - Chess.js game instance
+     * @param {string} room - Room ID
+     */
     const updateStatus = (game, room) => {
-        // checkmate?
         if (game.in_checkmate()) {
             io.to(room).emit('gameOver', game.turn(), true)
-        }
-        // draw? 
-        else if (game.in_draw()) {
+        } else if (game.in_draw()) {
             io.to(room).emit('gameOver', game.turn(), false)
-        }
-        // game still on
-        else {
+        } else {
             if (game.in_check()) {
                 io.to(room).emit('inCheck', game.turn())
-            }
-            else {
+            } else {
                 io.to(room).emit('updateStatus', game.turn())
             }
         }
     }
 
-    //Creating and joining the room
+    /**
+     * Joins a user to a specific room
+     * Limits room capacity to 2 players and handles name collisions
+     */
     socket.on('joinRoom', ({ user, room }, callback) => {
-        //We have to limit the number of users in a room to be just 2
+        // Validation: Limit room to 2 users
         if (io.nsps['/'].adapter.rooms[room] && io.nsps['/'].adapter.rooms[room].length === 2) {
             return callback('Already 2 users are there in the room!')
         }
 
+        // Validation: Check for duplicate username in the same room
         var alreadyPresent = false
         for (var x in userData) {
             if (userData[x].user == user && userData[x].room == room) {
                 alreadyPresent = true
             }
         }
-        // console.log(userData);
-        //If same name user already present
         if (alreadyPresent) {
             return callback('Choose different name!')
         }
 
         socket.join(room)
-        //Rooms List Update
+
+        // Update Rooms List
         roomsList.add(room);
         io.emit('roomsList', Array.from(roomsList));
-        totalRooms = roomsList.length
-        io.emit('totalRooms', totalRooms)
+        io.emit('totalRooms', roomsList.length)
+
+        // Register User
         userData[user + "" + socket.id] = {
             room, user,
             id: socket.id
         }
 
-        //If two users are in the same room, we can start
+        // Start Game if Room is Full (2 Players)
         if (io.nsps['/'].adapter.rooms[room].length === 2) {
-            //Rooms List Delete
             roomsList.delete(room);
             io.emit('roomsList', Array.from(roomsList));
-            totalRooms = roomsList.length
-            io.emit('totalRooms', totalRooms)
+            io.emit('totalRooms', roomsList.length)
+
             var game = new Chess()
-            //For getting ids of the clients
+
+            // Map sockets to game instance
             for (var x in io.nsps['/'].adapter.rooms[room].sockets) {
                 gameData[x] = game
             }
-            //For giving turns one by one
+
+            // Initialize Game Board
             io.to(room).emit('Dragging', socket.id)
             io.to(room).emit('DisplayBoard', game.fen(), socket.id, game.pgn())
             updateStatus(game, room)
         }
     })
 
-    //For catching dropped event
+    /**
+     * Handles Chess Piece Drop Event
+     * Validates moves and updates game state
+     */
     socket.on('Dropped', ({ source, target, room }) => {
         var game = gameData[socket.id]
         var move = game.move({
             from: source,
             to: target,
-            promotion: 'q' // NOTE: always promote to a queen for example simplicity
+            promotion: 'q' // NOTE: Always promote to a queen for simplicity
         })
-        // If correct move, then toggle the turns
+
         if (move != null) {
             io.to(room).emit('Dragging', socket.id)
         }
+
         io.to(room).emit('DisplayBoard', game.fen(), undefined, game.pgn())
         updateStatus(game, room)
-        // io.to(room).emit('printing', game.fen())
     })
 
-    //Catching message event
+    /**
+     * Handles In-Game Chat Messages
+     */
     socket.on('sendMessage', ({ user, room, message }) => {
         io.to(room).emit('receiveMessage', user, message)
     })
 
-    //Disconnected
+    /**
+     * Handle Disconnection
+     * Cleans up user data, room status, and game state
+     */
     socket.on('disconnect', () => {
         totalUsers--;
         io.emit('updateTotalUsers', totalUsers)
+
         var room = '', user = '';
         for (var x in userData) {
             if (userData[x].id == socket.id) {
@@ -131,21 +162,25 @@ io.on('connection', (socket) => {
                 delete userData[x]
             }
         }
-        //Rooms Removed
+
+        // Clean up empty rooms
         if (userData[room] == null) {
-            //Rooms List Delete
             roomsList.delete(room);
             io.emit('roomsList', Array.from(roomsList));
-            totalRooms = roomsList.length
-            io.emit('totalRooms', totalRooms)
+            io.emit('totalRooms', roomsList.length)
         }
+
         gameData.delete(socket.id)
+
         if (user != '' && room != '') {
             io.to(room).emit('disconnectedStatus');
         }
     })
 })
 
+/**
+ * Start Server
+ */
 server.listen(port, () => {
     console.log(`Server is up on port ${port}!`)
 })
