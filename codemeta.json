@@ -1,0 +1,55 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "name": "Online Chess Game",
+    "description": "A real-time multiplayer online chess game built with Node.js, Express, Socket.IO, and Chess.js. Features single-player mode against AI and multiplayer mode with real-time gameplay, in-game chat, and customizable board themes.",
+    "identifier": "ONLINE-CHESS-GAME",
+    "license": "https://spdx.org/licenses/MIT.html",
+    "programmingLanguage": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Node.js"
+    ],
+    "author": [
+        {
+            "@type": "Person",
+            "givenName": "Amey",
+            "familyName": "Thakur",
+            "id": "https://orcid.org/0000-0001-5644-1575",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Terna Engineering College"
+            }
+        },
+        {
+            "@type": "Person",
+            "givenName": "Mega",
+            "familyName": "Satish",
+            "id": "https://github.com/msatmod",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Terna Engineering College"
+            }
+        }
+    ],
+    "dateReleased": "2022-08-09",
+    "codeRepository": "https://github.com/Amey-Thakur/ONLINE-CHESS-GAME",
+    "developmentStatus": "complete",
+    "runtimePlatform": [
+        "Node.js",
+        "Express",
+        "Socket.IO"
+    ],
+    "applicationCategory": "Web Game / Multiplayer Strategy",
+    "keywords": [
+        "Chess",
+        "Multiplayer",
+        "Real-time",
+        "Socket.IO",
+        "Node.js",
+        "Express",
+        "Game Development",
+        "Computer Engineering"
+    ]
+}
