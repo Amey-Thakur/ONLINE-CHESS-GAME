@@ -6,7 +6,6 @@
   @author Amey Thakur <https://github.com/Amey-Thakur>
   @author Mega Satish <https://github.com/Mega-Satish>
   @created 2022-08-09
-  @modified 2022-08-09
   @repository https://github.com/Amey-Thakur/ONLINE-CHESS-GAME
   @license MIT
 -->
@@ -20,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A real-time online chess game built with Node.js and Socket.io.">
     <meta name="author" content="Amey Thakur, Mega Satish">
-    
+
     <link rel="icon" href="./img/icon.jpg">
     <!-- Third-party Stylesheets -->
     <link rel="stylesheet" type="text/css" href="./css/semantic.min.css">
@@ -45,7 +44,7 @@
         <div style="margin: 0; border-bottom: 4px solid gray; padding: 3px 0; " class="ui secondary menu">
             <img src="./img/icon.png" style="width:80px;height:80px;" alt="Chess Logo">
             <h2 style="text-decoration: underline;">CHESS GAME</h2>
-            
+
             <!-- Stats Section -->
             <div class="right menu">
                 <div style="margin-top:20px; height: 40px; padding-right: 20px; margin-right: 15px;"
@@ -94,7 +93,7 @@
                 <div style="text-align:center;">
                     <input class="formInput" type="text" placeholder="Room" style="padding: 10px;">
                 </div>
-                
+
                 <!-- Room Dropdown List -->
                 <div id="roomDropdownP" style="text-align:center;  height: 50px; margin: 10px; padding: 0 4px; ">
                     <div id="roomDropdown" class="ui fluid search selection dropdown"
@@ -107,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div style="text-align:center;">
                     <button class="game ui black button " id="joinButton">JOIN</button>
                 </div>
@@ -128,7 +127,7 @@
                     <button id="green_board" class="ui button grey color_b">GREEN</button>
                     <button id="blue_board" class="ui button grey color_b">BLUE</button>
                 </div>
-                
+
                 <!-- Game Status and History -->
                 <div id="statusPGN" style="text-align: center; display: none;">
                     <div>
@@ -144,10 +143,10 @@
                         <div id="pgn" style="overflow: auto; white-space: nowrap; width: 500px; margin: auto;"></div>
                     </div>
                 </div>
-                
+
                 <!-- Main Board Element -->
                 <div id="myBoard" style="width: 569px; margin: auto; margin-top: 10px; margin-bottom: 10px;"></div>
-                
+
                 <div style="text-align: center; margin-bottom: 20px;">
                     <a href="/" class="ui button black" style="width: 569px;">LEAVE GAME</a>
                 </div>
@@ -176,7 +175,7 @@
             </form>
         </div>
     </div>
-    
+
     <!-- Footer -->
     <div
         style="background-color: black; color: white; margin-top:auto; padding: 15px; text-align: center; font-size: 15px;">
