@@ -1,14 +1,45 @@
 {
-  "name": "mutiplayerchess",
+  "name": "online-chess-game",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A real-time multiplayer online chess game built with Node.js, Express, Socket.IO, and Chess.js. Features single-player mode against AI and multiplayer mode with real-time gameplay, in-game chat, and customizable board themes.",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "dev": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "chess",
+    "multiplayer",
+    "real-time",
+    "socket.io",
+    "express",
+    "game",
+    "nodejs"
+  ],
+  "author": "Amey Thakur <https://github.com/Amey-Thakur>, Mega Satish <https://github.com/Mega-Satish>",
+  "contributors": [
+    {
+      "name": "Amey Thakur",
+      "url": "https://github.com/Amey-Thakur"
+    },
+    {
+      "name": "Mega Satish",
+      "url": "https://github.com/Mega-Satish"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Amey-Thakur/ONLINE-CHESS-GAME.git"
+  },
+  "homepage": "https://github.com/Amey-Thakur/ONLINE-CHESS-GAME#readme",
+  "bugs": {
+    "url": "https://github.com/Amey-Thakur/ONLINE-CHESS-GAME/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "chess.js": "^0.10.2",
     "express": "^4.17.1",
