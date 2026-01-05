@@ -1,15 +1,36 @@
+<!--
+  @file index.html
+  @description Main entry file for the Online Chess Game user interface.
+  Includes layout for game modes, chess board, chat functionality, and navigation.
+
+  @author Amey Thakur <https://github.com/Amey-Thakur>
+  @author Mega Satish <https://github.com/Mega-Satish>
+  @created 2022-08-09
+  @modified 2022-08-09
+  @repository https://github.com/Amey-Thakur/ONLINE-CHESS-GAME
+  @license MIT
+-->
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>AMEY</title>
+    <title>ONLINE-CHESS-GAME by Amey Thakur & Mega Satish</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A real-time online chess game built with Node.js and Socket.io.">
+    <meta name="author" content="Amey Thakur, Mega Satish">
+    
     <link rel="icon" href="./img/icon.jpg">
+    <!-- Third-party Stylesheets -->
     <link rel="stylesheet" type="text/css" href="./css/semantic.min.css">
     <link rel="stylesheet" href="./css/chessboard-1.0.0.min.css">
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
+    <!-- Sound Effects -->
     <audio id="myAudio">
         <source src="./mp3/soundMove.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -18,11 +39,14 @@
         <source src="./mp3/insight.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    <!-- Navbar -->
+
+    <!-- Navigation Bar -->
     <div>
         <div style="margin: 0; border-bottom: 4px solid gray; padding: 3px 0; " class="ui secondary menu">
-            <img src="./img/icon.png" style="width:80px;height:80px;">
+            <img src="./img/icon.png" style="width:80px;height:80px;" alt="Chess Logo">
             <h2 style="text-decoration: underline;">CHESS GAME</h2>
+            
+            <!-- Stats Section -->
             <div class="right menu">
                 <div style="margin-top:20px; height: 40px; padding-right: 20px; margin-right: 15px;"
                     class="ui labeled button" tabindex="0">
@@ -49,6 +73,7 @@
 
 
     <div>
+        <!-- Game Mode Selection -->
         <div id="gameMode">
             <h1 style="text-align: center; margin: 10px; font-size: 35px;"> GAME MODE</h1>
             <div style="text-align:center;">
@@ -59,6 +84,7 @@
             </div>
         </div>
 
+        <!-- Room Joining Form -->
         <div id="joinFormDiv" style="display: none;">
             <form id="joinForm">
                 <h1 style="text-align: center; margin: 10px; font-size: 35px;">START GAME</h1>
@@ -68,6 +94,8 @@
                 <div style="text-align:center;">
                     <input class="formInput" type="text" placeholder="Room" style="padding: 10px;">
                 </div>
+                
+                <!-- Room Dropdown List -->
                 <div id="roomDropdownP" style="text-align:center;  height: 50px; margin: 10px; padding: 0 4px; ">
                     <div id="roomDropdown" class="ui fluid search selection dropdown"
                         style="border: 1px solid gray; width: 300px; margin:auto;">
@@ -75,11 +103,11 @@
                         <i class="dropdown icon"></i>
                         <div class="default text">SELECT ROOM</div>
                         <div class="menu" id="dropRooms">
-                            <!-- <div class="item" data-value="af"><i class="icon star"></i>Afghanistan</div>
-                            <div class="item" data-value="ar"><i class="icon star"></i>Argentina</div> -->
+                            <!-- Dynamic room items will be injected here -->
                         </div>
                     </div>
                 </div>
+                
                 <div style="text-align:center;">
                     <button class="game ui black button " id="joinButton">JOIN</button>
                 </div>
@@ -89,18 +117,19 @@
             </form>
         </div>
 
-        <!-- /Input Form -->
+        <!-- Game Area -->
         <div>
-            <!-- Chess Board -->
+            <!-- Chess Board Container -->
             <div id="chessGame" style="display: none;">
-                <!-- Color Schemes -->
+                <!-- Theme Color Schemes -->
                 <div style="text-align: center; margin: 10px;">
                     <button id="grey_board" class="ui button black color_b">GREY</button>
                     <button id="orange_board" class="ui button grey color_b">ORANGE</button>
                     <button id="green_board" class="ui button grey color_b">GREEN</button>
                     <button id="blue_board" class="ui button grey color_b">BLUE</button>
                 </div>
-                <!-- Status and PGN -->
+                
+                <!-- Game Status and History -->
                 <div id="statusPGN" style="text-align: center; display: none;">
                     <div>
                         <label>
@@ -115,7 +144,10 @@
                         <div id="pgn" style="overflow: auto; white-space: nowrap; width: 500px; margin: auto;"></div>
                     </div>
                 </div>
+                
+                <!-- Main Board Element -->
                 <div id="myBoard" style="width: 569px; margin: auto; margin-top: 10px; margin-bottom: 10px;"></div>
+                
                 <div style="text-align: center; margin-bottom: 20px;">
                     <a href="/" class="ui button black" style="width: 569px;">LEAVE GAME</a>
                 </div>
@@ -124,7 +156,7 @@
         </div>
     </div>
 
-    <!-- Chatting window -->
+    <!-- Chat Interface -->
     <div id="chat"
         style=" background-color: white; display: none; text-align: right; position: fixed; bottom: 0; right: 0; width: 400px; margin-right: 10px; border: 2px solid black;">
         <div class="ui button grey" style="border-radius: 0; width: 100%; padding: 15px; font-size: 16px;"
@@ -133,8 +165,7 @@
         </div>
         <div id="chatBox" style="display: none; padding: 12px;">
             <div id="chatContent" style="height: 240px; overflow-y: auto; word-break: break-all; ">
-                <!-- <div class="myMessage">Hello</div>
-                <div class="youMessage">his</div> -->
+                <!-- Chat messages injected here -->
             </div>
             <form style="margin-bottom: 0;" class="ui form">
                 <div style="display: flex; justify-content: space-around;">
@@ -145,9 +176,16 @@
             </form>
         </div>
     </div>
+    
+    <!-- Footer -->
     <div
         style="background-color: black; color: white; margin-top:auto; padding: 15px; text-align: center; font-size: 15px;">
-        <i>"Avoid the crowd. Do your own thinking independently. Be the chess player, not the chess piece"</i></div>
+        <i>"Avoid the crowd. Do your own thinking independently. Be the chess player, not the chess piece"</i>
+        <br>
+        <small>&copy; 2022 Amey Thakur & Mega Satish</small>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="./js/semantic.min.js"></script>
