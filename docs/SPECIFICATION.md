@@ -8,17 +8,17 @@
 
 ```mermaid
 graph TD
-    User((End User)) -->|Interacts/Moves Information| WebApp["Frontend Layer (HTML5/jQuery)"]
-    WebApp -->|Socket.IO Events| Connections["WebSocket Gateway (Socket.IO)"]
-    Connections -->|Payload Routing| Node["Backend Server (Node.js/Express)"]
+    User((End User)) -->|"Interacts/Moves Information"| WebApp["Frontend Layer (HTML5/jQuery)"]
+    WebApp -->|"Socket.IO Events"| Connections["WebSocket Gateway (Socket.IO)"]
+    Connections -->|"Payload Routing"| Node["Backend Server (Node.js/Express)"]
     
     subgraph Core_Logic ["Game State Management"]
-        Node -->|Move Validation| Engine["Rules Engine (Chess.js)"]
-        Engine -->|State Update (FEN)| Session["Room Manager (Memory Store)"]
+        Node -->|"Move Validation"| Engine["Rules Engine (Chess.js)"]
+        Engine -->|"State Update (FEN)"| Session["Room Manager (Memory Store)"]
     end
     
-    Session -->|Broadcast State| Connections
-    Connections -->|Update Board/Chat| WebApp
+    Session -->|"Broadcast State"| Connections
+    Connections -->|"Update Board/Chat"| WebApp
     WebApp -->|"Render UI (Chessboard.js)"| User
 ```
 
