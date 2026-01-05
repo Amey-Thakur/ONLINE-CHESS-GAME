@@ -1,3 +1,18 @@
+/**
+ * @file app.js
+ * @description Client-side JavaScript for the Online Chess Game.
+ * Handles DOM manipulation, Socket.IO client events, game logic integration with chess.js,
+ * board rendering with chessboard.js, and user interactions including chat and game mode selection.
+ * 
+ * @author Amey Thakur <https://github.com/Amey-Thakur>
+ * @author Mega Satish <https://github.com/Mega-Satish>
+ * @created 2022-08-09
+ * @modified 2022-08-09
+ * @repository https://github.com/Amey-Thakur/ONLINE-CHESS-GAME
+ * @license MIT
+ */
+
+// DOM Elements
 const formEl = document.querySelectorAll('#joinForm > div > input')
 const joinButtonEl = document.querySelector('#joinButton')
 const messageEl = document.querySelector('#message')
@@ -11,17 +26,20 @@ const multiPlayerEl = document.getElementById('multiPlayer');
 const totalRoomsEl = document.getElementById('rooms')
 const totalPlayersEl = document.getElementById('players')
 const chatContentEl = document.getElementById('chatContent')
+
+// Game Configuration
 var config = {};
 var board = null;
 var game = new Chess()
 var turnt = 0;
 
-// initializing semantic UI dropdown
-$('.ui.dropdown')
-    .dropdown();
+// Initialize Semantic UI Components
+$('.ui.dropdown').dropdown();
 
-
-// function for defining onchange on dropdown menus
+/**
+ * Handle Room Dropdown Selection
+ * Updates the room input field when a room is selected from the dropdown
+ */
 $("#roomDropdown").dropdown({
     onChange: function (val) {
         console.log(val)
@@ -30,9 +48,17 @@ $("#roomDropdown").dropdown({
     }
 });
 
-
+/**
+ * Handle Drag Start Event (Single Player)
+ * Validates if the game is over or if the correct piece color is being moved.
+ * @param {string} source - Source square
+ * @param {string} piece - Piece being moved
+ * @param {string} position - Current board position
+ * @param {string} orientation - Board orientation
+ * @returns {boolean} - False if move is invalid
+ */
 function onDragStart2(source, piece, position, orientation) {
-    // do not pick up pieces if the game is over
+    // Check if game is over
     if (game.game_over()) {
         if (game.in_draw()) {
             alert('Game Draw!!');
@@ -46,14 +72,18 @@ function onDragStart2(source, piece, position, orientation) {
         return false
     }
 
-    // only pick up pieces for White
+    // Restrict to White pieces (AI is Black)
     if (piece.search(/^b/) !== -1) return false
 }
 
+/**
+ * AI Move Logic (Random Move)
+ * Generates a random legal move for the computer component.
+ */
 function makeRandomMove() {
     var possibleMoves = game.moves()
 
-    // game over
+    // Game over check
     if (possibleMoves.length === 0) {
         return;
     }
@@ -65,31 +95,48 @@ function makeRandomMove() {
     board.position(game.fen());
 }
 
+/**
+ * Handle Piece Drop (Single Player)
+ * Executes the player's move and triggers the AI's response.
+ * @param {string} source - From square
+ * @param {string} target - To square
+ * @returns {string|null} - 'snapback' if illegal move
+ */
 function onDrop2(source, target) {
-    // see if the move is legal
+    // Validate move
     var move = game.move({
         from: source,
         to: target,
-        promotion: 'q' // NOTE: always promote to a queen for example simplicity
+        promotion: 'q' // NOTE: always promote to a queen for simplicity
     })
+
     myAudioEl.play();
-    // illegal move
+
+    // Illegal move
     if (move === null) return 'snapback'
+
     turnt = 1 - turnt;
-    // make random legal move for black
+
+    // Trigger AI move after a short delay
     window.setTimeout(makeRandomMove, 250)
 }
 
-// update the board position after the piece snap
-// for castling, en passant, pawn promotion
+/**
+ * Handle Snap End (Single Player)
+ * Updates the board position after a move completes (e.g., castling, promotion)
+ */
 function onSnapEnd2() {
     board.position(game.fen())
 }
 
+// ----------------------------------------------------------------------------
+// Single Player Mode Event Listener
+// ----------------------------------------------------------------------------
 singlePlayerEl.addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('gameMode').style.display = "none";
     document.querySelector('#chessGame').style.display = null;
+
     config = {
         draggable: true,
         position: 'start',
@@ -100,18 +147,27 @@ singlePlayerEl.addEventListener('click', (e) => {
     board = Chessboard('myBoard', config);
 })
 
-//Connection will be established after webpage is refreshed
+// ----------------------------------------------------------------------------
+// Multiplayer Mode Logic (Socket.IO)
+// ----------------------------------------------------------------------------
+
+// Connection established on page load
 const socket = io()
 
-//Triggers after a piece is dropped on the board
+/**
+ * Handle Piece Drop (Multiplayer)
+ * Emits the move event to the server.
+ */
 function onDrop(source, target) {
-    //emits event after piece is dropped
     var room = formEl[1].value;
     myAudioEl.play();
     socket.emit('Dropped', { source, target, room })
 }
 
-//Update Status Event
+/**
+ * Receive Update Event
+ * Update game status, FEN string, and PGN history from server.
+ */
 socket.on('updateEvent', ({ status, fen, pgn }) => {
     statusEl.textContent = status
     fenEl.textContent = fen
@@ -122,10 +178,15 @@ socket.on('printing', (fen) => {
     console.log(fen)
 })
 
-//Catch Display event
+/**
+ * Display Board Event
+ * Renders the board based on the FEN string received from server.
+ * Initializes the game UI for multiplayer session.
+ */
 socket.on('DisplayBoard', (fenString, userId, pgn) => {
     console.log(fenString)
-    //This is to be done initially only
+
+    // Initial Game Setup
     if (userId != undefined) {
         messageEl.textContent = 'Match Started!! Best of Luck...'
         if (socket.id == userId) {
@@ -142,7 +203,10 @@ socket.on('DisplayBoard', (fenString, userId, pgn) => {
     document.getElementById('pgn').textContent = pgn
 })
 
-//To turn off dragging
+/**
+ * Dragging Control
+ * Disables dragging for the player who just moved (waiting for opponent).
+ */
 socket.on('Dragging', id => {
     if (socket.id != id) {
         config.draggable = true;
@@ -151,7 +215,10 @@ socket.on('Dragging', id => {
     }
 })
 
-//To Update Status Element
+/**
+ * Update Game Status Text
+ * Displays whose turn it is.
+ */
 socket.on('updateStatus', (turn) => {
     if (board.orientation().includes(turn)) {
         statusEl.textContent = "Your turn"
@@ -161,7 +228,10 @@ socket.on('updateStatus', (turn) => {
     }
 })
 
-//If in check
+/**
+ * Check Status Handler
+ * Alerts the user if they are in check.
+ */
 socket.on('inCheck', turn => {
     if (board.orientation().includes(turn)) {
         statusEl.textContent = "You are in Check!!"
@@ -171,7 +241,10 @@ socket.on('inCheck', turn => {
     }
 })
 
-//If win or draw
+/**
+ * Game Over Handler
+ * Displays the result of the game (Win/Loss/Draw).
+ */
 socket.on('gameOver', (turn, win) => {
     config.draggable = false;
     if (win) {
@@ -187,18 +260,24 @@ socket.on('gameOver', (turn, win) => {
     }
 })
 
-//Client disconnected in between
+/**
+ * Disconnection Handler
+ * Notifies if the opponent disconnects.
+ */
 socket.on('disconnectedStatus', () => {
     alert('Opponent left the game!!')
     messageEl.textContent = 'Opponent left the game!!'
 })
 
-//Receiving a message
+/**
+ * Chat Message Receiver
+ * Appends received messages to the chat window.
+ */
 socket.on('receiveMessage', (user, message) => {
     var chatContentEl = document.getElementById('chatContent')
-    //Create a div element for using bootstrap
     chatContentEl.scrollTop = chatContentEl.scrollHeight;
     var divEl = document.createElement('div')
+
     if (formEl[0].value == user) {
         divEl.classList.add('myMessage');
         divEl.textContent = message;
@@ -208,42 +287,48 @@ socket.on('receiveMessage', (user, message) => {
         divEl.textContent = message;
         document.getElementById('messageTone').play();
     }
+
     var style = window.getComputedStyle(document.getElementById('chatBox'));
     if (style.display === 'none') {
         document.getElementById('chatBox').style.display = 'block';
     }
+
     chatContentEl.appendChild(divEl);
     divEl.focus();
     divEl.scrollIntoView();
-
 })
 
-//Rooms List update
+/**
+ * Rooms List Update
+ * Updates the dropdown with available rooms.
+ */
 socket.on('roomsList', (rooms) => {
-    // roomsListEl.innerHTML = null;
-    // console.log('Rooms List event triggered!! ',  rooms);
     totalRoomsEl.innerHTML = rooms.length
     var dropRooms = document.getElementById('dropRooms')
     while (dropRooms.firstChild) {
         dropRooms.removeChild(dropRooms.firstChild)
     }
-    // added event listener to each room
+
     rooms.forEach(x => {
         var roomEl = document.createElement('div')
         roomEl.setAttribute('class', 'item')
-
         roomEl.setAttribute('data-value', x)
         roomEl.textContent = x;
         dropRooms.appendChild(roomEl)
     })
 })
 
+/**
+ * Player Count Update
+ */
 socket.on('updateTotalUsers', totalUsers => {
     console.log('event listened')
     totalPlayersEl.innerHTML = totalUsers;
 })
 
-//Message will be sent only after you click the button
+/**
+ * Chat Send Button Listener
+ */
 sendButtonEl.addEventListener('click', (e) => {
     e.preventDefault()
     var message = document.querySelector('#inputMessage').value
@@ -254,10 +339,12 @@ sendButtonEl.addEventListener('click', (e) => {
     socket.emit('sendMessage', { user, room, message })
 })
 
-//Connect clients only after they click Join
+/**
+ * Join Game Button Listener
+ * Validates inputs and emits join request.
+ */
 joinButtonEl.addEventListener('click', (e) => {
     e.preventDefault()
-
     var user = formEl[0].value, room = formEl[1].value
 
     if (!user || !room) {
@@ -268,33 +355,41 @@ joinButtonEl.addEventListener('click', (e) => {
         formEl[0].setAttribute("disabled", "disabled")
         document.querySelector('#roomDropdownP').style.display = 'none';
         formEl[1].setAttribute("disabled", "disabled")
-        //Now Let's try to join it in room // If users more than 2 we will 
+
+        // Attempt to join room
         socket.emit('joinRoom', { user, room }, (error) => {
             messageEl.textContent = error
             if (alert(error)) {
                 window.location.reload()
             }
-            else    //to reload even if negative confirmation
+            else {
                 window.location.reload();
+            }
         })
         messageEl.textContent = "Waiting for other player to join"
     }
 })
 
+/**
+ * Multiplayer Mode Selection Listener
+ */
 multiPlayerEl.addEventListener('click', (e) => {
     e.preventDefault();
     document.getElementById('joinFormDiv').style.display = "block";
     document.getElementById('gameMode').style.display = "none";
-    //Server will create a game and clients will play it
-    //Clients just have to diaplay the game
+
     var board = ChessBoard('myBoard')
     config = {
-        draggable: false,   //Initially
+        draggable: false,   // Initially disabled until game starts
         position: 'start',
         onDrop: onDrop,
         orientation: 'white'
     }
 })
+
+// ----------------------------------------------------------------------------
+// UI Helper Functions (Color Schemes)
+// ----------------------------------------------------------------------------
 
 const applyColorScheme = (black, white) => {
     const blackEl = document.querySelectorAll('.black-3c85d');
@@ -309,7 +404,6 @@ const applyColorScheme = (black, white) => {
     }
 }
 
-//For removing class from all buttons
 const removeClass = () => {
     const buttonEl = document.querySelectorAll('.color_b');
     for (var i = 0; i < buttonEl.length; i++) {
@@ -318,7 +412,10 @@ const removeClass = () => {
     }
 }
 
-// Color Buttons
+// ----------------------------------------------------------------------------
+// Theme Switching Event Listeners
+// ----------------------------------------------------------------------------
+
 document.getElementById('grey_board').addEventListener('click', e => {
     e.preventDefault();
     removeClass();
@@ -359,7 +456,7 @@ document.getElementById('blue_board').addEventListener('click', e => {
     applyColorScheme("#727FA2", "#C3C6BE");
 })
 
-// Messages Modal
+// Chat Toggle
 document.getElementById('messageBox').addEventListener('click', e => {
     e.preventDefault();
     var style = window.getComputedStyle(document.getElementById('chatBox'));
