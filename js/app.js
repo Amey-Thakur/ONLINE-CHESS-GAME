@@ -7,7 +7,6 @@
  * @author Amey Thakur <https://github.com/Amey-Thakur>
  * @author Mega Satish <https://github.com/Mega-Satish>
  * @created 2022-08-09
- * @modified 2022-08-09
  * @repository https://github.com/Amey-Thakur/ONLINE-CHESS-GAME
  * @license MIT
  */
