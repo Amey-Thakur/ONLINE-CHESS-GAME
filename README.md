@@ -154,6 +154,17 @@ ONLINE-CHESS-GAME/
 
 ---
 
+<!-- RESULTS -->
+## Results Gallery
+
+<div align="center">
+
+![Online Chess Game Interface](https://user-images.githubusercontent.com/54937357/160670075-ec91172a-fcf4-4bed-b8f9-c5b98ab65a6e.png)
+
+</div>
+
+---
+
 <!-- QUICK START -->
 ## Quick Start
 
