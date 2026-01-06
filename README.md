@@ -118,9 +118,9 @@ ONLINE-CHESS-GAME/
 │
 ├── Mini-Project/                                  # Research, Demos & Training Materials
 │   ├── HMI Mini Project Teams.pdf                 # Team Composition Record
-│   ├── HMI_MINI_PROJECT_PRESENTATION...pdf        # Technical Presentation (PDF)
-│   ├── HMI_MINI_PROJECT_PRESENTATION...pptx       # Technical Presentation (Source)
-│   ├── HMI_MINI_PROJECT_REPORT...pdf              # Comprehensive Project Report
+│   ├── HMI_MINI_PROJECT_PRESENTATION_BE_COMPS_B-50,51,58.pdf # Technical Presentation (PDF)
+│   ├── HMI_MINI_PROJECT_PRESENTATION_BE_COMPS_B-50,51,58.pptx # Technical Presentation (Source)
+│   ├── HMI_MINI_PROJECT_REPORT_BE_COMPS_B-50,51,58.pdf       # Comprehensive Project Report
 │   └── HMI_Mini Project - BE( B ).xlsx            # Raw Team Metadata
 │
 ├── Source Code/                                   # Real-Time Web Application (Node.js)
@@ -216,7 +216,7 @@ Use this mini-project as a case study for implementing real-time web application
 This project may serve as a practical example or supplementary teaching resource for Human-Machine Interaction (`CSC801`) or Web Technology courses. It highlights principles of immediate feedback, error prevention, and user control. Attribution is appreciated when utilizing content.
 
 **For Researchers**  
-The technical report and representation provide insights into the application of usability metrics in real-time gaming systems, the architectural challenges of socket-based state management, and the evaluation of user experience in competitive digital environments.
+The technical report and presentation provide insights into the application of usability metrics in real-time gaming systems, the architectural challenges of socket-based state management, and the evaluation of user experience in competitive digital environments.
 
 ---
 
