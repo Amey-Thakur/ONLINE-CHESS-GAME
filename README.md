@@ -117,18 +117,31 @@ ONLINE-CHESS-GAME/
 │   └── Mega.png                                   # Author Profile Image (Mega Satish)
 │
 ├── Mini-Project/                                  # Research, Demos & Training Materials
-│   ├── HMI_MINI_PROJECT_PRESENTATION...           # Technical Presentation (PDF/PPTX)
-│   ├── HMI_MINI_PROJECT_REPORT...                 # Comprehensive Project Report
-│   └── HMI Mini Project - BE( B ).xlsx            # Team Metadata
+│   ├── HMI Mini Project Teams.pdf                 # Team Composition Record
+│   ├── HMI_MINI_PROJECT_PRESENTATION...pdf        # Technical Presentation (PDF)
+│   ├── HMI_MINI_PROJECT_PRESENTATION...pptx       # Technical Presentation (Source)
+│   ├── HMI_MINI_PROJECT_REPORT...pdf              # Comprehensive Project Report
+│   └── HMI_Mini Project - BE( B ).xlsx            # Raw Team Metadata
 │
-├── Source Code/                                   # Real-Time Web Application
+├── Source Code/                                   # Real-Time Web Application (Node.js)
 │   ├── css/                                       # Presentation Layer Stylesheets
-│   ├── img/                                       # Graphic Assets
-│   ├── js/                                        # Client-Side Logic
-│   ├── themes/                                    # Chessboard Themes
-│   ├── app.js                                     # Server Gateway (Node.js)
-│   ├── index.html                                 # Application Frontend Blueprint
-│   └── package.json                               # Dependency Manifest
+│   │   ├── themes/                                # Visual Customization Assets
+│   │   ├── chessboard-1.0.0.min.css               # Chessboard Library Styles
+│   │   ├── semantic.min.css                       # UI Framework Styles (Semantic UI)
+│   │   └── styles.css                             # Application-Specific Styling
+│   ├── img/                                       # Graphic & Asset Repository
+│   │   └── chesspieces/                           # Sprite Assets for Game Pieces
+│   ├── js/                                        # Client-Side Logic & Libraries
+│   │   ├── app.js                                 # Frontend Event Handling & Logic
+│   │   ├── chessboard-1.0.0.min.js                # Chessboard Interaction Library
+│   │   └── semantic.min.js                        # UI Framework Logic (Semantic UI)
+│   ├── mp3/                                       # Audio Feedback Assets
+│   │   ├── insight.mp3                            # Game Alert Sound
+│   │   └── soundMove.mp3                          # Move Confirmation Sound
+│   ├── app.js                                     # Server-Side Entry Point (Socket.IO)
+│   ├── index.html                                 # Main User Interface Gateway
+│   ├── package-lock.json                          # Dependency Version Lockfile
+│   └── package.json                               # Network Dependency Manifest
 │
 ├── .gitattributes                                 # Global Git LFS & Config
 ├── .gitignore                                     # Asset Exclusion Manifest
