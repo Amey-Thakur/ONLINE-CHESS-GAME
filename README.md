@@ -81,6 +81,11 @@ The system leverages a responsive design framework to maintain interaction consi
 | 4 | **Project Teams** | Team composition and roles | March 2022 | — | [View](Mini-Project/HMI%20Mini%20Project%20Teams.pdf) |
 | 5 | **Project Demo (YouTube)** | Real-time demonstration of features | May 2022 | — | [View](https://youtu.be/CCbrTQwYyE8) |
 
+> [!TIP]
+> **Socket.IO Connection Optimization**
+>
+> To ensure uninterrupted gameplay during network fluctuations, configure Socket.IO reconnection strategies with exponential backoff. This improves session resilience and prevents abrupt disconnections during critical game states.
+
 ---
 
 <!-- FEATURES -->
@@ -173,6 +178,11 @@ Ensure your local development environment meets the following technical requirem
 - **Runtime Environment**: Node.js **14.x** (LTS) or higher.
 - **Package Manager**: npm (v6.x+) for dependency resolution.
 - **Browser**: Modern web browser with WebSocket support (Chrome, Firefox, Edge).
+
+> [!WARNING]
+> **Technical Dependencies & Environment**
+>
+> This system is built using **Node.js 14+** and **Socket.IO 2.x**. For stable execution and educational reference, ensure your browser supports WebSocket connections. It is recommended to run this in a controlled development environment to align with the baseline real-time communication framework requirements.
 
 ### 2. Setup & Deployment
 1.  **Repository Cloning**:
