@@ -198,14 +198,14 @@ Ensure your local development environment meets the following technical requirem
 
 This repository is openly shared to support learning and knowledge exchange across the academic community.
 
-**For Students**
+**For Students**  
 Use this mini-project as a case study for implementing real-time web applications using WebSocket protocols. It demonstrates the practical integration of rule-based logic engines (`Chess.js`) with visual frontend libraries (`Chessboard.js`) within a Node.js environment.
 
-**For Educators**
-This project may serve as a practical example for courses covering **Human-Machine Interaction** (`CSC801`) or **Web Technology**. It highlights principles of immediate feedback, error prevention, and user control.
+**For Educators**  
+This project may serve as a practical example or supplementary teaching resource for **Human-Machine Interaction** (`CSC801`) or **Web Technology** courses. It highlights principles of immediate feedback, error prevention, and user control. Attribution is appreciated when utilizing content.
 
-**For Developers**
-The codebase provides a foundational structure for multiplayer game servers, event-driven state management, and scalable room orchestration using Socket.IO.
+**For Researchers**  
+The technical report and presentation provide insights into the application of usability metrics in real-time gaming systems, the architectural challenges of socket-based state management, and the evaluation of user experience in competitive digital environments.
 
 ---
 
@@ -224,9 +224,9 @@ Copyright © 2022 Amey Thakur, Mega Satish
 <!-- ABOUT -->
 ## About This Repository
 
-**Created & Maintained by**: [Amey Thakur](https://github.com/Amey-Thakur) & [Mega Satish](https://github.com/msatmod)
-**Academic Journey**: Bachelor of Engineering in Computer Engineering (2018-2022)
-**Institution**: [Terna Engineering College](https://ternaengg.ac.in/), Navi Mumbai
+**Created & Maintained by**: [Amey Thakur](https://github.com/Amey-Thakur) & [Mega Satish](https://github.com/msatmod)  
+**Academic Journey**: Bachelor of Engineering in Computer Engineering (2018-2022)  
+**Institution**: [Terna Engineering College](https://ternaengg.ac.in/), Navi Mumbai  
 **University**: [University of Mumbai](https://mu.ac.in/)
 
 This repository serves as a permanent technical record for the **Online Chess Game**, developed as an **8th Semester Mini-Project**. It highlights the application of HMI principles in designing interactive, real-time digital systems.
