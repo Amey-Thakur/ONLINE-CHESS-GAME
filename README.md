@@ -202,10 +202,10 @@ This repository is openly shared to support learning and knowledge exchange acro
 Use this mini-project as a case study for implementing real-time web applications using WebSocket protocols. It demonstrates the practical integration of rule-based logic engines (`Chess.js`) with visual frontend libraries (`Chessboard.js`) within a Node.js environment.
 
 **For Educators**  
-This project may serve as a practical example or supplementary teaching resource for **Human-Machine Interaction** (`CSC801`) or **Web Technology** courses. It highlights principles of immediate feedback, error prevention, and user control. Attribution is appreciated when utilizing content.
+This project may serve as a practical example or supplementary teaching resource for Human-Machine Interaction (`CSC801`) or Web Technology courses. It highlights principles of immediate feedback, error prevention, and user control. Attribution is appreciated when utilizing content.
 
 **For Researchers**  
-The technical report and presentation provide insights into the application of usability metrics in real-time gaming systems, the architectural challenges of socket-based state management, and the evaluation of user experience in competitive digital environments.
+The technical report and representation provide insights into the application of usability metrics in real-time gaming systems, the architectural challenges of socket-based state management, and the evaluation of user experience in competitive digital environments.
 
 ---
 
