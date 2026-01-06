@@ -158,29 +158,36 @@ ONLINE-CHESS-GAME/
 ## Quick Start
 
 ### 1. Prerequisites
-Ensure your environment meets the minimum specifications:
-- **Node.js**: Version **14.x** or higher.
-- **npm**: Node Package Manager.
+Ensure your local development environment meets the following technical requirements:
+- **Runtime Environment**: Node.js **14.x** (LTS) or higher.
+- **Package Manager**: npm (v6.x+) for dependency resolution.
+- **Browser**: Modern web browser with WebSocket support (Chrome, Firefox, Edge).
 
 ### 2. Setup & Deployment
-1.  **Clone the Repository**:
+1.  **Repository Cloning**:
+    Download the project assets to your local machine:
     ```bash
     git clone https://github.com/Amey-Thakur/ONLINE-CHESS-GAME.git
     cd ONLINE-CHESS-GAME
     ```
-2.  **Install Dependencies**:
+2.  **Dependency Resolution**:
+    Install the required Node.js packages as defined in the manifest:
     ```bash
     cd "Source Code"
     npm install
     ```
 
-### 3. Launch Application
-1.  **Start the Server**:
+### 3. Execution Integration
+1.  **Server Initialization**:
+    Launch the backend server to establish the Socket.IO gateway:
     ```bash
     node app.js
     ```
-2.  **Access Web Gateway**:
-    -   Navigate to: `http://localhost:3000`
+    *The console should indicate: `Server is up on port 3000!`*
+
+2.  **User Interface Access**:
+    Open the application in your web browser to initialize the client session:
+    -   **Local Gateway**: [http://localhost:3000](http://localhost:3000)
 
 ---
 
