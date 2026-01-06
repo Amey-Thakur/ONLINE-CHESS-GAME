@@ -66,7 +66,10 @@ The system leverages a responsive design framework to maintain interaction consi
 > [!IMPORTANT]
 > **Academic Context**
 >
-> This project was developed as a **Mini-Project** for the **Human-Machine Interaction Laboratory**, exploring the practical application of usability principles in game design.
+> This project was developed as a **Mini-Project** for the **Human-Machine Interaction Laboratory**, exploring the practical application of usability principles in game design. The scholarly documentation is archived on **ResearchGate**.
+>
+> - [Technical Report @ResearchGate](https://doi.org/10.13140/RG.2.2.28183.85920)
+> - [Project Presentation @ResearchGate](https://doi.org/10.13140/RG.2.2.21472.97284)
 
 ### Resources
 
