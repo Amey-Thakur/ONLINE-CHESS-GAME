@@ -5,11 +5,15 @@
 * text=auto eol=lf
 
 # Explicitly mark source files as text
-*.js text
-*.html text
-*.css text
-*.json text
-*.md text
+*.js text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.cff text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+LICENSE text eol=lf
 
 # Mark binary files
 *.jpg binary

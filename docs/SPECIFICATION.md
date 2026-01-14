@@ -1,4 +1,4 @@
-# Technical Specification: ONLINE-CHESS-GAME
+# Technical Specification: Online Chess Game
 
 ## Architectural Overview
 
