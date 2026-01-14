@@ -27,92 +27,125 @@ body {
     overflow: visible;
     display: flex;
     flex-direction: column;
+    /* Anti-Selection & Security */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
-/* -------------------------------------------------------------------------- */
-/*                               Game Controls                                */
-/* -------------------------------------------------------------------------- */
-
-#singlePlayer,
-#multiPlayer,
-#joinButton {
-    margin: 10px;
-    width: 300px;
-    padding: 20px;
-    font-size: 22px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Anti-Dragging for Images */
+img {
+    pointer-events: none;
+    -webkit-user-drag: none;
 }
 
-#gameMode,
-#joinFormDiv {
-    padding: 10px;
-    margin-top: 8%;
+/* Security Overlay Animation */
+@keyframes securityPulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
-.formInput {
-    border: 1px solid gray;
-    height: 50px;
-    border-radius: 4px;
-    width: 300px;
-    margin: 10px;
-    padding: 0 4px;
-    font-size: 16px;
-}
+.security-icon {
+    animation: securityPulse 2s infinite;
 
-/* -------------------------------------------------------------------------- */
-/*                                Board Themes                                */
-/* -------------------------------------------------------------------------- */
+    /* -------------------------------------------------------------------------- */
+    /*                               Game Controls                                */
+    /* -------------------------------------------------------------------------- */
 
-/* Default Theme Colors */
-.black-3c85d {
-    background-color: #E1E1E1;
-    color: #FFFFFF;
-}
+    #singlePlayer,
+    #multiPlayer,
+    #joinButton {
+        margin: 10px;
+        width: 300px;
+        padding: 20px;
+        font-size: 22px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-.white-1e1d7 {
-    background-color: #FFFFFF;
-    color: #E1E1E1;
-}
+    #gameMode,
+    #joinFormDiv {
+        padding: 10px;
+        margin-top: 8%;
+    }
 
-/* Theme Selection Buttons */
-#grey_board,
-#orange_board,
-#green_board,
-#blue_board {
-    margin: 6px;
-    width: 130px;
-    border-radius: 4px;
-}
+    .formInput {
+        border: 1px solid gray;
+        height: 50px;
+        border-radius: 4px;
+        width: 300px;
+        margin: 10px;
+        padding: 0 4px;
+        font-size: 16px;
+    }
 
-/* -------------------------------------------------------------------------- */
-/*                                Chat Styles                                 */
-/* -------------------------------------------------------------------------- */
+    /* -------------------------------------------------------------------------- */
+    /*                                Board Themes                                */
+    /* -------------------------------------------------------------------------- */
 
-/* User's Message (Right Aligned) */
-.myMessage {
-    text-align: right;
-    padding: 8px;
-    background-color: #E0E0E0;
-    font-size: 17px;
-    margin-bottom: 10px;
-    margin-right: 7px;
-    clear: both;
-    float: right;
-    border-radius: 5px;
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;
-}
+    /* Default Theme Colors */
+    .black-3c85d {
+        background-color: #E1E1E1;
+        color: #FFFFFF;
+    }
 
-/* Opponent's Message (Left Aligned) */
-.youMessage {
-    text-align: left;
-    padding: 8px;
-    background-color: #616161;
-    color: white;
-    font-size: 17px;
-    margin-bottom: 10px;
-    clear: both;
-    border-radius: 5px;
-    float: left;
+    .white-1e1d7 {
+        background-color: #FFFFFF;
+        color: #E1E1E1;
+    }
+
+    /* Theme Selection Buttons */
+    #grey_board,
+    #orange_board,
+    #green_board,
+    #blue_board {
+        margin: 6px;
+        width: 130px;
+        border-radius: 4px;
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                                Chat Styles                                 */
+    /* -------------------------------------------------------------------------- */
+
+    /* User's Message (Right Aligned) */
+    .myMessage {
+        text-align: right;
+        padding: 8px;
+        background-color: #E0E0E0;
+        font-size: 17px;
+        margin-bottom: 10px;
+        margin-right: 7px;
+        clear: both;
+        float: right;
+        border-radius: 5px;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+    }
+
+    /* Opponent's Message (Left Aligned) */
+    .youMessage {
+        text-align: left;
+        padding: 8px;
+        background-color: #616161;
+        color: white;
+        font-size: 17px;
+        margin-bottom: 10px;
+        clear: both;
+        border-radius: 5px;
+        float: left;
+    }
 }
