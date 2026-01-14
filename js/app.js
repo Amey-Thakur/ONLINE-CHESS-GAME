@@ -465,3 +465,52 @@ document.getElementById('messageBox').addEventListener('click', e => {
         document.getElementById('chatBox').style.display = 'none';
     }
 })
+// ----------------------------------------------------------------------------
+// Security & Anti-Inspection Protocols
+// ----------------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+    const securityOverlay = document.getElementById('securityOverlay');
+    const dismissBtn = document.getElementById('dismissSecurity');
+
+    // Disable Right Click
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        showSecurityAlert();
+    });
+
+    // Disable Keyboard Shortcuts for Inspection
+    document.addEventListener('keydown', (e) => {
+        // F12
+        if (e.key === 'F12') {
+            e.preventDefault();
+            showSecurityAlert();
+        }
+        // Ctrl+Shift+I/J/C (DevTools)
+        if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
+            e.preventDefault();
+            showSecurityAlert();
+        }
+        // Ctrl+U (View Source)
+        if (e.ctrlKey && e.key.toUpperCase() === 'U') {
+            e.preventDefault();
+            showSecurityAlert();
+        }
+    });
+
+    // Show Security Overlay
+    function showSecurityAlert() {
+        securityOverlay.style.display = 'flex';
+        // Add pulse animation to icon
+        const icon = securityOverlay.querySelector('div');
+        icon.classList.add('security-icon');
+    }
+
+    // Dismiss Security Overlay
+    dismissBtn.addEventListener('click', () => {
+        securityOverlay.style.display = 'none';
+        // Remove animation to reset
+        const icon = securityOverlay.querySelector('div');
+        icon.classList.remove('security-icon');
+    });
+});
