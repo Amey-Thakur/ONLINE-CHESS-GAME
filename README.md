@@ -68,7 +68,7 @@ The system leverages a responsive design framework to maintain interaction consi
 | 1 | [**Project Presentation**](Mini-Project/HMI_MINI_PROJECT_PRESENTATION_BE_COMPS_B-50,51,58.pdf) | Visual demonstration and slides |
 | 2 | [**Project Report**](Mini-Project/HMI_MINI_PROJECT_REPORT_BE_COMPS_B-50,51,58.pdf) | Detailed project documentation |
 | 3 | [**Technical Specification**](docs/SPECIFICATION.md) | Technical Architecture & Specification |
-| 4 | [**Project Repository**](Source%20Code/) | Complete source code and documentation |
+| 4 | [**Source Code**](Source%20Code/) | Complete source code and documentation |
 | 5 | [**Project Teams**](Mini-Project/HMI%20Mini%20Project%20Teams.pdf) | Team composition and roles |
 | 6 | [**Project Demo**](https://youtu.be/CCbrTQwYyE8) | Real-time demonstration of features |
 | 7 | [**HMI Laboratory**](https://github.com/Amey-Thakur/HUMAN-MACHINE-INTERACTION-AND-HUMAN-MACHINE-INTERACTION-LAB) | Academic repository for HMI |
