@@ -513,4 +513,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const icon = securityOverlay.querySelector('div');
         icon.classList.remove('security-icon');
     });
+
+    // Console Easter Egg (Self-XSS Warning)
+    console.log("%cStop!", "color: red; font-size: 50px; font-weight: bold; text-shadow: 2px 2px 0px black;");
+    console.log("%cThis is a browser feature intended for developers. If someone told you to copy-paste something here to enable a feature or 'hack' someone's account, it is a scam and will give them access to your account.", "color: white; font-size: 18px; font-weight: bold;");
+    console.log("%cSee https://en.wikipedia.org/wiki/Self-XSS for more information.", "color: cyan; font-size: 16px; font-weight: bold; text-decoration: underline;");
 });
