@@ -53,7 +53,7 @@ This project involves the development of a sophisticated **Online Chess Game**, 
 
 The system leverages a responsive design framework to maintain interaction consistency across diverse device orientations. At its core, the application integrates complex algorithmic structures for **real-time move validation** and state management, demonstrating the practical application of usability engineering metrics. This project serves as an exploration into the synergy between high-performance back-end logic and intuitive front-end layouts, aiming to optimize the overall **User Experience (UX)** through iterative design and evaluation.
 
-> [!IMPORTANT]
+> [!NOTE]
 > **Academic Context**
 >
 > This project was developed as a **Mini-Project** for the **Human-Machine Interaction Laboratory**, exploring the practical application of usability principles in game design. The scholarly documentation is archived on **ResearchGate**.
@@ -67,9 +67,11 @@ The system leverages a responsive design framework to maintain interaction consi
 |---|---|---|
 | 1 | [**Project Presentation**](Mini-Project/HMI_MINI_PROJECT_PRESENTATION_BE_COMPS_B-50,51,58.pdf) | Visual demonstration and slides |
 | 2 | [**Project Report**](Mini-Project/HMI_MINI_PROJECT_REPORT_BE_COMPS_B-50,51,58.pdf) | Detailed project documentation |
-| 3 | [**Project Repository**](Source%20Code/) | Complete source code and documentation |
-| 4 | [**Project Teams**](Mini-Project/HMI%20Mini%20Project%20Teams.pdf) | Team composition and roles |
-| 5 | [**Project Demo**](https://youtu.be/CCbrTQwYyE8) | Real-time demonstration of features |
+| 3 | [**Technical Specification**](docs/SPECIFICATION.md) | Technical Architecture & Specification |
+| 4 | [**Project Repository**](Source%20Code/) | Complete source code and documentation |
+| 5 | [**Project Teams**](Mini-Project/HMI%20Mini%20Project%20Teams.pdf) | Team composition and roles |
+| 6 | [**Project Demo**](https://youtu.be/CCbrTQwYyE8) | Real-time demonstration of features |
+| 7 | [**HMI Laboratory**](https://github.com/Amey-Thakur/HUMAN-MACHINE-INTERACTION-AND-HUMAN-MACHINE-INTERACTION-LAB) | Academic repository for HMI |
 
 > [!TIP]
 > **Socket.IO Connection Optimization**
