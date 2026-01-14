@@ -27,6 +27,11 @@ const publicDirectoryPath = path.join(__dirname, './')
 
 app.use(express.static(publicDirectoryPath))
 
+// Custom 404 Handler
+app.use((req, res, next) => {
+    res.status(404).sendFile(path.join(__dirname, '404.html'))
+})
+
 // Game State Management
 const gameData = new Map()   // Maps socket ID to Chess instance
 const userData = new Map()   // Maps user key to user details
