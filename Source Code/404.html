@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Checkmate | Page Not Found</title>
+    <link rel="icon" href="./img/icon.jpg">
     <link rel="stylesheet" href="./css/semantic.min.css">
     <style>
         body {
@@ -33,6 +34,8 @@
             color: #ffffff;
             text-shadow: 2px 2px 0px #ff0000, -2px -2px 0px #00ff00;
             animation: glitch 1s infinite;
+            position: relative;
+            z-index: 2;
         }
 
         @keyframes glitch {
@@ -67,6 +70,10 @@
             color: #888;
             text-transform: uppercase;
             letter-spacing: 2px;
+            position: relative;
+            z-index: 3;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 0 10px;
         }
 
         .home-btn {
