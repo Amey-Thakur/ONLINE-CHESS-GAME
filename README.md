@@ -33,32 +33,16 @@
 
   **Terna Engineering College | Computer Engineering | Batch of 2022**
 
-  <table>
-  <tr>
-  <td align="center">
-  <a href="https://github.com/Amey-Thakur">
-  <img src="https://github.com/Amey-Thakur.png" width="180px;" alt="Amey Thakur"/><br />
-  <sub><b>Amey Thakur</b></sub>
-  </a><br /><br />
-  <a href="https://orcid.org/0000-0001-5644-1575">
-  <img src="https://img.shields.io/badge/ORCID-0000--0001--5644--1575-brightgreen" alt="ORCID"/>
-  </a>
-  </td>
-  <td align="center">
-  <a href="https://github.com/msatmod">
-  <img src="https://raw.githubusercontent.com/Amey-Thakur/ONLINE-CHESS-GAME/main/Mega/Mega.png" width="180px;" alt="Mega Satish"/><br />
-  <sub><b>Mega Satish</b></sub>
-  </a><br /><br />
-  <a href="https://orcid.org/0000-0002-1844-9557">
-  <img src="https://img.shields.io/badge/ORCID-0000--0002--1844--9557-brightgreen" alt="ORCID"/>
-  </a>
-  </td>
-  </tr>
-  </table>
-
-  *Special thanks to [Mega Satish](https://github.com/msatmod) for her meaningful contributions, guidance, and support that helped shape this work.*
+  | <a href="https://github.com/Amey-Thakur"><img src="https://github.com/Amey-Thakur.png" width="150" height="150" alt="Amey Thakur"></a><br>[**Amey Thakur**](https://github.com/Amey-Thakur)<br><br>[![ORCID](https://img.shields.io/badge/ORCID-0000--0001--5644--1575-green.svg)](https://orcid.org/0000-0001-5644-1575) | <a href="https://github.com/msatmod"><img src="https://raw.githubusercontent.com/Amey-Thakur/ONLINE-CHESS-GAME/main/Mega/Mega.png" width="150" height="150" alt="Mega Satish"></a><br>[**Mega Satish**](https://github.com/msatmod)<br><br>[![ORCID](https://img.shields.io/badge/ORCID-0000--0002--1844--9557-green.svg)](https://orcid.org/0000-0002-1844-9557) |
+  | :---: | :---: |
 
 </div>
+
+> [!IMPORTANT]
+> ### 🤝🏻 Special Acknowledgement
+> *Special thanks to **[Mega Satish](https://github.com/msatmod)** for her meaningful contributions, guidance, and support that helped shape this work.*
+
+
 
 ---
 
@@ -79,13 +63,13 @@ The system leverages a responsive design framework to maintain interaction consi
 
 ### Resources
 
-| # | Resource | Description | Date | Marks | Link |
-|---|---|---|---|---|---|
-| 1 | **Project Presentation** | Visual demonstration and slides | May 2022 | 9/10 | [View](Mini-Project/HMI_MINI_PROJECT_PRESENTATION_BE_COMPS_B-50,51,58.pdf) |
-| 2 | **Project Report** | Detailed project documentation | May 2022 | 9/10 | [View](Mini-Project/HMI_MINI_PROJECT_REPORT_BE_COMPS_B-50,51,58.pdf) |
-| 3 | **Project Repository** | Complete source code and documentation | May 2022 | — | [View](Source%20Code/) |
-| 4 | **Project Teams** | Team composition and roles | March 2022 | — | [View](Mini-Project/HMI%20Mini%20Project%20Teams.pdf) |
-| 5 | **Project Demo (YouTube)** | Real-time demonstration of features | May 2022 | — | [View](https://youtu.be/CCbrTQwYyE8) |
+| # | Resource | Description |
+|---|---|---|
+| 1 | [**Project Presentation**](Mini-Project/HMI_MINI_PROJECT_PRESENTATION_BE_COMPS_B-50,51,58.pdf) | Visual demonstration and slides |
+| 2 | [**Project Report**](Mini-Project/HMI_MINI_PROJECT_REPORT_BE_COMPS_B-50,51,58.pdf) | Detailed project documentation |
+| 3 | [**Project Repository**](Source%20Code/) | Complete source code and documentation |
+| 4 | [**Project Teams**](Mini-Project/HMI%20Mini%20Project%20Teams.pdf) | Team composition and roles |
+| 5 | [**Project Demo**](https://youtu.be/CCbrTQwYyE8) | Real-time demonstration of features |
 
 > [!TIP]
 > **Socket.IO Connection Optimization**
@@ -118,37 +102,27 @@ The system leverages a responsive design framework to maintain interaction consi
 <!-- STRUCTURE -->
 ## Project Structure
 
-```bash
+```python
 ONLINE-CHESS-GAME/
 │
 ├── docs/                                          # Formal Documentation
-│   └── SPECIFICATION.md                           # Technical Architecture & Spec
+│   └── SPECIFICATION.md                           # Technical Architecture & Specification
 │
 ├── Mega/                                          # Archival Attribution Assets
 │   └── Mega.png                                   # Author Profile Image (Mega Satish)
 │
 ├── Mini-Project/                                  # Research, Demos & Training Materials
 │   ├── HMI Mini Project Teams.pdf                 # Team Composition Record
-│   ├── HMI_MINI_PROJECT_PRESENTATION_BE_COMPS_B-50,51,58.pdf # Technical Presentation (PDF)
-│   ├── HMI_MINI_PROJECT_PRESENTATION_BE_COMPS_B-50,51,58.pptx # Technical Presentation (Source)
-│   ├── HMI_MINI_PROJECT_REPORT_BE_COMPS_B-50,51,58.pdf       # Comprehensive Project Report
+│   ├── HMI_MINI_PROJECT_PRESENTATION...pdf        # Technical Presentation (PDF)
+│   ├── HMI_MINI_PROJECT_PRESENTATION...pptx       # Technical Presentation (Source)
+│   ├── HMI_MINI_PROJECT_REPORT...pdf              # Comprehensive Project Report
 │   └── HMI_Mini Project - BE( B ).xlsx            # Raw Team Metadata
 │
 ├── Source Code/                                   # Real-Time Web Application (Node.js)
 │   ├── css/                                       # Presentation Layer Stylesheets
-│   │   ├── themes/                                # Visual Customization Assets
-│   │   ├── chessboard-1.0.0.min.css               # Chessboard Library Styles
-│   │   ├── semantic.min.css                       # UI Framework Styles (Semantic UI)
-│   │   └── styles.css                             # Application-Specific Styling
 │   ├── img/                                       # Graphic & Asset Repository
-│   │   └── chesspieces/                           # Sprite Assets for Game Pieces
 │   ├── js/                                        # Client-Side Logic & Libraries
-│   │   ├── app.js                                 # Frontend Event Handling & Logic
-│   │   ├── chessboard-1.0.0.min.js                # Chessboard Interaction Library
-│   │   └── semantic.min.js                        # UI Framework Logic (Semantic UI)
 │   ├── mp3/                                       # Audio Feedback Assets
-│   │   ├── insight.mp3                            # Game Alert Sound
-│   │   └── soundMove.mp3                          # Move Confirmation Sound
 │   ├── app.js                                     # Server-Side Entry Point (Socket.IO)
 │   ├── index.html                                 # Main User Interface Gateway
 │   ├── package-lock.json                          # Dependency Version Lockfile
@@ -262,9 +236,11 @@ This repository serves as a permanent technical record for the **Online Chess Ga
 
 ### Acknowledgments
 
-Grateful acknowledgment to **[Mega Satish](https://github.com/msatmod)** for her pivotal role and collaborative excellence during the development of this project. Her intellectual contributions, technical insights, and dedicated commitment to software quality were fundamental in achieving the system's analytical and functional objectives. This technical record serves as a testament to her scholarly partnership and significant impact on the final implementation.
+Grateful acknowledgment to [**Mega Satish**](https://github.com/msatmod) for her exceptional collaboration and scholarly partnership during the development of this project. Her intellectual contributions, technical insights, and dedicated commitment to software quality were fundamental in achieving the project's functional objectives. Learning alongside her was a transformative experience; her thoughtful approach to problem-solving and encouragement turned challenges into meaningful learning moments. This work reflects the growth and insights gained from our side-by-side academic journey. Thank you, Mega, for everything you shared and taught along the way.
 
-Special thanks to the faculty members of the Department of Computer Engineering at Terna Engineering College for their guidance during the course of this project. Gratitude is also extended to the mentors and peers who supported this learning endeavor.
+Grateful acknowledgment to the faculty members of the Department of Computer Engineering at Terna Engineering College for their guidance and instruction in Human-Machine Interaction. Their expertise in usability and interaction design helped shape the technical foundation of this project.
+
+Special thanks to the mentors and peers whose encouragement, discussions, and support contributed meaningfully to this learning experience.
 
 ---
 
@@ -280,8 +256,10 @@ Special thanks to the faculty members of the Department of Computer Engineering 
 
   ---
 
-  ### Presented as part of the 8th Semester Mini-Project @ Terna Engineering College
-
+  #### Presented as part of the 8th Semester Mini-Project @ Terna Engineering College
+  
+  ---
+  
   ### 🎓 [Computer Engineering Repository](https://github.com/Amey-Thakur/COMPUTER-ENGINEERING)
 
   **Computer Engineering (B.E.) - University of Mumbai**
