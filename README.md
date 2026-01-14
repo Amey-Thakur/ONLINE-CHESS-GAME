@@ -234,7 +234,7 @@ Copyright © 2022 Amey Thakur, Mega Satish
 
 This repository serves as a permanent technical record for the **Online Chess Game**, developed as an **8th Semester Mini-Project**. It highlights the application of HMI principles in designing interactive, real-time digital systems.
 
-**Connect**: [GitHub](https://github.com/Amey-Thakur) · [LinkedIn](https://www.linkedin.com/in/amey-thakur) · [ORCID](https://orcid.org/0000-0001-5644-1575)
+**Connect**: [GitHub](https://github.com/Amey-Thakur) &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/amey-thakur) &nbsp;·&nbsp; [ORCID](https://orcid.org/0000-0001-5644-1575)
 
 ### Acknowledgments
 
