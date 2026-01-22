@@ -10,7 +10,7 @@
 
   A real-time multiplayer chess application featuring instant move synchronization, in-game chat, and AI integration, designed with a focus on human-computer interaction principles.
 
-  **[Source Code](Source%20Code/)** &nbsp;·&nbsp; **[Technical Specification](docs/SPECIFICATION.md)** &nbsp;·&nbsp; **[Video Demo](https://youtu.be/CCbrTQwYyE8)**
+  **[Source Code](Source%20Code/)** &nbsp;·&nbsp; **[Technical Specification](docs/SPECIFICATION.md)** &nbsp;·&nbsp; **[Video Demo](https://youtu.be/CCbrTQwYyE8)** &nbsp;·&nbsp; **[Live Demo](https://Amey-Thakur.github.io/ONLINE-CHESS-GAME/)**
 
   [![Online Chess Game Demo](https://img.youtube.com/vi/CCbrTQwYyE8/0.jpg)](https://youtu.be/CCbrTQwYyE8)
 
@@ -254,7 +254,7 @@ Special thanks to the mentors and peers whose encouragement, discussions, and su
 
   <br>
 
-  🧬 **[Human-Machine Interaction Lab](https://github.com/Amey-Thakur/HUMAN-MACHINE-INTERACTION-AND-HUMAN-MACHINE-INTERACTION-LAB)** &nbsp;·&nbsp; ♟️ **[Online Chess Game](https://github.com/Amey-Thakur/ONLINE-CHESS-GAME)**
+  🧬 **[Human-Machine Interaction Lab](https://github.com/Amey-Thakur/HUMAN-MACHINE-INTERACTION-AND-HUMAN-MACHINE-INTERACTION-LAB)** &nbsp;·&nbsp; ♟️ **[Online Chess Game](https://Amey-Thakur.github.io/ONLINE-CHESS-GAME/)**
 
   ---
 
