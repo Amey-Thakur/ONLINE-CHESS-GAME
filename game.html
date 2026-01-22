@@ -1,0 +1,346 @@
+<!--
+  @file index.html
+  @description Main entry file for the Online Chess Game user interface.
+  Includes layout for game modes, chess board, chat functionality, and navigation.
+
+  @author Amey Thakur <https://github.com/Amey-Thakur>
+  @author Mega Satish <https://github.com/Mega-Satish>
+  @created 2022-08-09
+  @repository https://github.com/Amey-Thakur/ONLINE-CHESS-GAME
+  @license MIT
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chess by Amey & Mega</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A real-time online chess game built with Node.js and Socket.io.">
+    <meta name="author" content="Amey Thakur, Mega Satish">
+    <meta name="keywords" content="chess, multiplayer, online chess, socket.io, nodejs, real-time game">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/Amey-Thakur/ONLINE-CHESS-GAME">
+    <meta property="og:title" content="ONLINE-CHESS-GAME by Amey Thakur & Mega Satish">
+    <meta property="og:description"
+        content="A real-time online chess game built with Node.js and Socket.io. Features single-player and multiplayer modes.">
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/Amey-Thakur/ONLINE-CHESS-GAME/main/Source%20Code/img/icon.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://github.com/Amey-Thakur/ONLINE-CHESS-GAME">
+    <meta property="twitter:title" content="ONLINE-CHESS-GAME by Amey Thakur & Mega Satish">
+    <meta property="twitter:description"
+        content="A real-time online chess game built with Node.js and Socket.io. Features single-player and multiplayer modes.">
+    <meta property="twitter:image"
+        content="https://raw.githubusercontent.com/Amey-Thakur/ONLINE-CHESS-GAME/main/Source%20Code/img/icon.png">
+
+    <link rel="icon" href="./img/icon.jpg">
+    <!-- Third-party Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="./css/semantic.min.css">
+    <link rel="stylesheet" href="./css/chessboard-1.0.0.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <style>
+        /* Premium Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0e14;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+            padding: 0 20px;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(88, 166, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #58a6ff, #a371f7);
+            border-radius: 10px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.5);
+        }
+
+        .loading-text {
+            font-size: 13px;
+            color: #8b949e;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        @keyframes progressSim {
+            0% {
+                width: 0%;
+            }
+
+            50% {
+                width: 70%;
+            }
+
+            100% {
+                width: 90%;
+            }
+        }
+
+        .progress-bar.simulating {
+            animation: progressSim 4s forwards cubic-bezier(0.1, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="progress-container">
+                <div class="progress-bar simulating" id="main-progress-bar"></div>
+            </div>
+            <p class="loading-text">Loading Chess Game...</p>
+        </div>
+    </div>
+    <!-- Sound Effects -->
+    <audio id="myAudio">
+        <source src="./mp3/soundMove.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="messageTone">
+        <source src="./mp3/insight.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <!-- Security Protection -->
+    <div id="securityOverlay"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;">
+        <div style="color: #ff3333; font-size: 60px; margin-bottom: 20px;">🛡️</div>
+        <h1
+            style="color: #ffffff; font-family: 'Segoe UI'; text-transform: uppercase; letter-spacing: 3px; font-size: 24px; margin-bottom: 15px;">
+            Unauthorized Action Detected</h1>
+        <p
+            style="color: #888; font-family: 'Segoe UI'; margin-bottom: 30px; text-align: center; max-width: 500px; line-height: 1.6;">
+            This project is protected by academic integrity protocols.<br>
+            Direct access to source code or developer tools is restricted.
+        </p>
+        <div style="color: #444; font-size: 12px; margin-bottom: 30px; letter-spacing: 2px;">
+            AMEY THAKUR · MEGA SATISH
+        </div>
+        <button id="dismissSecurity"
+            style="background: transparent; border: 1px solid #ff3333; color: #ff3333; padding: 10px 30px; cursor: pointer; transition: all 0.3s;">
+            DISMISS
+        </button>
+    </div>
+    <!-- Navigation Bar -->
+    <div>
+        <div style="margin: 0; border-bottom: 4px solid gray; padding: 3px 0; " class="ui secondary menu">
+            <a href="index.html" style="display: flex; align-items: center; color: black; text-decoration: none;">
+                <img src="./img/icon.png" style="width:80px;height:80px;" alt="Chess Logo">
+                <h2 style="text-decoration: underline; margin: 0; margin-left: 10px;">CHESS GAME</h2>
+            </a>
+
+            <!-- Stats Section -->
+            <div class="right menu">
+                <div style="margin-top:20px; height: 40px; padding-right: 20px; margin-right: 15px;"
+                    class="ui labeled button" tabindex="0">
+                    <div class="ui button">
+                        <i class="user icon"></i> #PLAYERS
+                    </div>
+                    <a class="ui basic label">
+                        <span id="players">0</span>
+                    </a>
+                </div>
+
+                <div style="margin-top:20px; height: 40px; padding-left: 20px;  margin-right: 15px;"
+                    class="ui labeled button" tabindex="0">
+                    <div class="ui button">
+                        <i class="star icon"></i> #ROOMS
+                    </div>
+                    <a class="ui basic label">
+                        <span id="rooms">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <!-- Game Mode Selection -->
+        <div id="gameMode">
+            <h1 style="text-align: center; margin: 10px; font-size: 35px;"> GAME MODE</h1>
+            <div style="text-align:center;">
+                <button class="game ui black button " id="singlePlayer">SINGLE PLAYER</button>
+            </div>
+            <div style="text-align:center;">
+                <button class="game ui black button " id="multiPlayer">MULTI PLAYER</button>
+            </div>
+        </div>
+
+        <!-- Room Joining Form -->
+        <div id="joinFormDiv" style="display: none;">
+            <form id="joinForm">
+                <h1 style="text-align: center; margin: 10px; font-size: 35px;">START GAME</h1>
+                <div style="text-align:center;">
+                    <input class="formInput" type="text" placeholder="Name" style="padding: 10px;">
+                </div>
+                <div style="text-align:center;">
+                    <input class="formInput" type="text" placeholder="Room" style="padding: 10px;">
+                </div>
+
+                <!-- Room Dropdown List -->
+                <div id="roomDropdownP" style="text-align:center;  height: 50px; margin: 10px; padding: 0 4px; ">
+                    <div id="roomDropdown" class="ui fluid search selection dropdown"
+                        style="border: 1px solid gray; width: 300px; margin:auto;">
+                        <input type="hidden" name="country">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">SELECT ROOM</div>
+                        <div class="menu" id="dropRooms">
+                            <!-- Dynamic room items will be injected here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align:center;">
+                    <button class="game ui black button " id="joinButton">JOIN</button>
+                </div>
+                <div style="text-align:center;">
+                    <p id="message"></p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Game Area -->
+        <div>
+            <!-- Chess Board Container -->
+            <div id="chessGame" style="display: none;">
+                <!-- Theme Color Schemes -->
+                <div style="text-align: center; margin: 10px;">
+                    <button id="grey_board" class="ui button black color_b">GREY</button>
+                    <button id="orange_board" class="ui button grey color_b">ORANGE</button>
+                    <button id="green_board" class="ui button grey color_b">GREEN</button>
+                    <button id="blue_board" class="ui button grey color_b">BLUE</button>
+                </div>
+
+                <!-- Game Status and History -->
+                <div id="statusPGN" style="text-align: center; display: none;">
+                    <div>
+                        <label>
+                            <h3><strong>STATUS</strong></h3>
+                        </label>
+                        <div id="status">YOUR TURN</div>
+                    </div>
+                    <div>
+                        <label>
+                            <h3><strong>HISTORY</strong></h3>
+                        </label>
+                        <div id="pgn" style="overflow: auto; white-space: nowrap; width: 500px; margin: auto;"></div>
+                    </div>
+                </div>
+
+                <!-- Main Board Element -->
+                <div id="myBoard" style="width: 569px; margin: auto; margin-top: 10px; margin-bottom: 10px;"></div>
+
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <a href="index.html" class="ui button black" style="width: 569px;">LEAVE GAME</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Interface -->
+    <div id="chat"
+        style=" background-color: white; display: none; text-align: right; position: fixed; bottom: 0; right: 0; width: 400px; margin-right: 10px; border: 2px solid black;">
+        <div class="ui button grey" style="border-radius: 0; width: 100%; padding: 15px; font-size: 16px;"
+            id="messageBox">
+            MESSAGES
+        </div>
+        <div id="chatBox" style="display: none; padding: 12px;">
+            <div id="chatContent" style="height: 240px; overflow-y: auto; word-break: break-all; ">
+                <!-- Chat messages injected here -->
+            </div>
+            <form style="margin-bottom: 0;" class="ui form">
+                <div style="display: flex; justify-content: space-around;">
+                    <input class="form-control " id="inputMessage" type="text" placeholder="Enter a Message"
+                        style="margin-right: 10px;">
+                    <button class="ui black button" id="send">SEND</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div
+        style="background-color: black; color: white; margin-top:auto; padding: 15px; text-align: center; font-size: 15px;">
+        <i>"Avoid the crowd. Do your own thinking independently. Be the chess player, not the chess piece"</i>
+        <br>
+        <small>&copy; 2022 <a href="https://github.com/Amey-Thakur" style="color: white; text-decoration: none;">Amey
+                Thakur</a> & <a href="https://github.com/msatmod" style="color: white; text-decoration: none;">Mega
+                Satish</a></small>
+        <br>
+        <small style="opacity: 0.8; font-size: 0.8rem;">Presented as part of the 8th Semester Mini-Project @ Terna
+            Engineering College</small>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="./js/semantic.min.js"></script>
+    <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+    <script src="./js/chessboard-1.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"
+        integrity="sha384-s3XgLpvmHyscVpijnseAmye819Ee3yaGa8NxstkJVyA6nuDFjt59u1QvuEl/mecz"
+        crossorigin="anonymous"></script>
+    <script src="./js/app.js"></script>
+    <script>
+        // Loading Screen Logic
+        const hideLoading = () => {
+            const screen = document.getElementById('loading-screen');
+            const bar = document.getElementById('main-progress-bar');
+            if (bar) {
+                bar.classList.remove('simulating');
+                bar.style.width = '100%';
+            }
+
+            setTimeout(() => {
+                if (screen) screen.classList.add('hidden');
+            }, 500);
+        };
+
+        window.addEventListener('load', () => setTimeout(hideLoading, 800));
+        setTimeout(hideLoading, 5000); // Safety timeout
+    </script>
+</body>
+
+</html>
