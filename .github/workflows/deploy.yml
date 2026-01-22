@@ -13,7 +13,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Prepare Build
-        run: mv "Source Code" public
+        run: |
+          mkdir public
+          cp index.html public/
+          cp -r "Source Code"/* public/
+          # Ensure game.html exists in public (renamed from index.html)
+          # Note: We already renamed it locally, so cp -r will bring it as game.html
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
