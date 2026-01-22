@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Chess Game | Amey & Mega</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e14;
+            --bg-secondary: #11171e;
+            --bg-card: #161b22;
+            --border-color: #30363d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --success: #2ea043;
+            --gold: #d29922;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-card: #ffffff;
+            --border-color: #d0d7de;
+            --text-primary: #24292f;
+            --text-secondary: #57606a;
+            --accent: #0969da;
+            --success: #1a7f37;
+            --gold: #9a6700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent), #a371f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .header .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Hero Action */
+        .hero-action {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(88, 166, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(88, 166, 255, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-card);
+            border-color: var(--text-secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Laptop Mockup */
+        .laptop-container {
+            perspective: 2000px;
+            margin: 60px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .macbook {
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .macbook .screen {
+            background: #0d1117;
+            border-radius: 12px 12px 0 0;
+            border: 1px solid #30363d;
+            border-bottom: none;
+            padding: 8px 8px 0 8px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .macbook .viewport {
+            background: #000;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 4px 4px 0 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .macbook .viewport iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .macbook .base {
+            background: #161b22;
+            height: 24px;
+            width: 120%;
+            margin-left: -10%;
+            border-radius: 0 0 20px 20px;
+            position: relative;
+            z-index: 9;
+            border: 1px solid #30363d;
+            border-top: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .macbook .base::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15%;
+            height: 6px;
+            background: #30363d;
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 40px;
+            margin-top: 80px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+            padding: 0 20px;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(88, 166, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #a371f7);
+            border-radius: 10px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.5);
+        }
+
+        .loading-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        @keyframes progressSim {
+            0% {
+                width: 0%;
+            }
+
+            50% {
+                width: 70%;
+            }
+
+            100% {
+                width: 90%;
+            }
+        }
+
+        .progress-bar.simulating {
+            animation: progressSim 4s forwards cubic-bezier(0.1, 0, 0.2, 1);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <span id="theme-icon">🌙</span>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="progress-container">
+                <div class="progress-bar simulating" id="main-progress-bar"></div>
+            </div>
+            <p class="loading-text">Loading Chess Game...</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="badge">🎲 HMI Mini Project</div>
+            <h1>Online Chess Game</h1>
+            <p>A real-time multiplayer chess application featuring instant move synchronization, in-game chat, and AI
+                integration.</p>
+            <div class="hero-action">
+                <a href="game.html" class="btn btn-primary">Launch Game</a>
+                <a href="https://github.com/Amey-Thakur/ONLINE-CHESS-GAME" class="btn btn-outline">View Source Code</a>
+            </div>
+        </header>
+
+        <div class="laptop-container">
+            <div class="macbook">
+                <div class="screen">
+                    <div class="viewport">
+                        <iframe
+                            src="https://www.youtube.com/embed/CCbrTQwYyE8?autoplay=1&mute=1&loop=1&playlist=CCbrTQwYyE8"
+                            title="Project Demo"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="base"></div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2022 <a href="https://github.com/Amey-Thakur">Amey Thakur</a> & <a
+                    href="https://github.com/msatmod">Mega Satish</a></p>
+            <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.8;">Presented as part of the 8th Semester
+                Mini-Project @ Terna Engineering College</p>
+            <p style="margin-top: 15px;">
+                <a href="https://github.com/Amey-Thakur/ONLINE-CHESS-GAME">GitHub Repository</a> ·
+                <a href="docs/SPECIFICATION.md">Documentation</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        const hideLoading = () => {
+            const screen = document.getElementById('loading-screen');
+            const bar = document.getElementById('main-progress-bar');
+            if (bar) {
+                bar.classList.remove('simulating');
+                bar.style.width = '100%';
+            }
+            setTimeout(() => { if (screen) screen.classList.add('hidden'); }, 500);
+        };
+        window.addEventListener('load', () => setTimeout(hideLoading, 800));
+        setTimeout(hideLoading, 5000);
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.dataset.theme === 'dark') {
+                html.dataset.theme = 'light';
+                icon.textContent = '☀️';
+            } else {
+                html.dataset.theme = 'dark';
+                icon.textContent = '🌙';
+            }
+        }
+    </script>
+</body>
+
+</html>
