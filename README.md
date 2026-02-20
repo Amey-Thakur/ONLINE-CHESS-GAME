@@ -261,7 +261,7 @@ Special thanks to the mentors and peers whose encouragement, discussions, and su
 
   <br>
 
-  🧬 **[Human-Machine Interaction Lab](https://github.com/Amey-Thakur/HUMAN-MACHINE-INTERACTION-AND-HUMAN-MACHINE-INTERACTION-LAB)** &nbsp;·&nbsp; ♟️ **[Online Chess Game](https://Amey-Thakur.github.io/ONLINE-CHESS-GAME/)**
+  🔬 **[Human-Machine Interaction Lab](https://github.com/Amey-Thakur/HUMAN-MACHINE-INTERACTION-AND-HUMAN-MACHINE-INTERACTION-LAB)** &nbsp;·&nbsp; ♟️ **[Online Chess Game](https://Amey-Thakur.github.io/ONLINE-CHESS-GAME/)**
 
   ---
 
