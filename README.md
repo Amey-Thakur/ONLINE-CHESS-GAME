@@ -192,6 +192,13 @@ Ensure your local development environment meets the following technical requirem
     Open the application in your web browser to initialize the client session:
     -   **Local Gateway**: [http://localhost:3000](http://localhost:3000)
 
+> [!TIP]
+> **Real-Time Multiplayer Online Chess Game**
+> 
+> Experience a high-fidelity web simulation of this real-time chess platform, featuring instant move synchronization via Socket.IO, integrated AI opponents, and a responsive interface designed for seamless human-machine interaction.
+>
+> [**Launch Live Demo**](https://Amey-Thakur.github.io/ONLINE-CHESS-GAME/)
+
 ---
 
 <!-- =========================================================================================
