@@ -5,23 +5,46 @@ on:
     branches:
       - main
 
+# Required by actions/deploy-pages, which mints an OIDC token to publish.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time. Two pushes seconds apart otherwise create competing
+# deployments to the same environment; the second waits on the first, polls for
+# ten minutes and times out, which reads as a failure even though nothing is wrong.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Prepare Build
         run: |
           mkdir public
           cp index.html public/
           cp -r "Source Code"/* public/
-          # Ensure game.html exists in public (renamed from index.html)
-          # Note: We already renamed it locally, so cp -r will bring it as game.html
+          # game.html and its assets live in Source Code, so the copy above is
+          # what puts them at the site root alongside index.html.
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages
-          folder: public
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
