@@ -33,8 +33,10 @@
             }
         }
     ],
+    "dateCreated": "2022-07-29",
     "dateReleased": "2022-08-09",
     "codeRepository": "https://github.com/Amey-Thakur/ONLINE-CHESS-GAME",
+    "isPartOf": "https://github.com/Amey-Thakur/COMPUTER-ENGINEERING",
     "developmentStatus": "complete",
     "runtimePlatform": [
         "Node.js",
@@ -50,6 +52,33 @@
         "Node.js",
         "Express",
         "Game Development",
-        "Computer Engineering"
-    ]
+        "Computer Engineering",
+        "Chess Game",
+        "Chessboardjs",
+        "Computer Science",
+        "CSS",
+        "Engineering",
+        "Expressjs",
+        "HMI",
+        "HTML",
+        "Human Machine Interaction",
+        "JavaScript",
+        "Socketio",
+        "University Of Mumbai",
+        "University of Mumbai",
+        "Mumbai University",
+        "Terna Engineering College",
+        "Navi Mumbai",
+        "India",
+        "B.E. Computer Engineering",
+        "Semester VIII",
+        "Amey Thakur",
+        "amey",
+        "ameythakur",
+        "amey-thakur",
+        "ameyarc",
+        "Mega Satish",
+        "megasatish"
+    ],
+    "url": "https://amey-thakur.github.io/ONLINE-CHESS-GAME/"
 }

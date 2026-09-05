@@ -1,0 +1,35 @@
+# Online Chess Game
+
+> A real-time multiplayer chess application featuring instant move
+> synchronization, in-game chat, and AI integration, designed with a focus
+> on human-computer interaction principles.
+
+Author: Amey Thakur, ORCID 0000-0001-5644-1575
+Co-author: Mega Satish, ORCID 0000-0002-1844-9557
+Institution: Terna Engineering College, University of Mumbai
+Programme: B.E. Computer Engineering, Fourth Year, Semester VIII
+Licence: CC BY 4.0, attribution required
+Repository created: 29 July 2022
+Work dated: 9 August 2022
+
+## What is in this repository
+
+- Mega, 6 files
+- Mini-Project, 5 files
+- Source Code, 44 files
+- docs, 1 file
+- index.html
+
+## Subject terms
+
+chess-game, chessboardjs, computer-engineering, computer-science, css,
+engineering, expressjs, hmi, html, human-machine-interaction, javascript,
+multiplayer, nodejs, socketio, university-of-mumbai
+
+## Where this sits
+
+- This repository: https://github.com/Amey-Thakur/ONLINE-CHESS-GAME
+- Degree index, every subject and project: https://github.com/Amey-Thakur/COMPUTER-ENGINEERING
+- Project page: https://amey-thakur.github.io/ONLINE-CHESS-GAME/
+- Author: https://github.com/Amey-Thakur
+- Research notes and reflections: https://amey-thakur.github.io/
